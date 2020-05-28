@@ -1,20 +1,27 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
 
-const chatSchema = new Schema(
-  {
+
+modeule.exports = function(sequelize, DataTypes) {
+  const Chat = sequelize.define("Chat", {
     message: {
-      type: String
-    },
-    sender: {
-      type: String
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      } 
     }
-  },
-  {
-    timestamps: true
+
+    
+
+    
+  });
+
+  Chat.associate = function(models) {
+    Chat.belongsTo(models.User), {
+      foreignKey: {
+        allowNull: false
+      }
+    }
   }
-);
 
-let Chat = mongoose.model("theChat", chatSchema);
-
-module.exports = Chat;
+  return Chat;
+}
