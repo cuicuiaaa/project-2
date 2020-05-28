@@ -1,5 +1,9 @@
 //require the express module
 const express = require('express');
+const session = require('express-session');
+
+const passport = require('./config/passport');
+
 const app = express();
 
 const bodyParser = require('body-parser');
@@ -43,7 +47,7 @@ socket = io(http);
 
 //database connection
 const Chat = require('./models/Chat');
-const connect = require('./dbconnect');
+
 
 //setup event listener
 socket.on('connection', socket => {
@@ -73,9 +77,9 @@ socket.on('connection', socket => {
     socket.broadcast.emit('received', { message: msg });
 
     //save chat to the database
-    connect.then(() => {
+    db.sequelize.sync().then(() => {
       console.log('connected correctly to the server');
-      const chatMessage = new Chat({ message: msg, sender: 'Anonymous' });
+      const chatMessage = new Chat({ message: msg, userId: 'Anonymous' });
 
       chatMessage.save();
     });

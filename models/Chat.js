@@ -1,7 +1,7 @@
 
 
-modeule.exports = function(sequelize, DataTypes) {
-  const Chat = sequelize.define("Chat", {
+module.exports = function(sequelize, DataTypes) {
+  const Chat = sequelize.define('Chat', {
     message: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -10,9 +10,6 @@ modeule.exports = function(sequelize, DataTypes) {
       } 
     }
 
-    
-
-    
   });
 
   Chat.associate = function(models) {
@@ -20,8 +17,8 @@ modeule.exports = function(sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
-    }
-  }
+    };
+  };
 
   return Chat;
-}
+};
