@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/lumen/bootstrap.min.css">
   <link href="stylesheets/style.css" rel="stylesheet">
+  <link href="/css/style.css" type="text/css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -25,10 +26,42 @@
         <h2>Welcome <span class="member-name"></span></h2>
       </div>
     </div>
+    <div class="chat_window">
+      <div class="top_menu">
+          <div class="buttons">
+              <div class="button close"></div>
+              <div class="button minimize"></div>
+              <div class="button maximize"></div>
+          </div>
+          <div class="title">Chat</div>
+      </div>
+      <ul id ="messages" class="messages">
+          
+      </ul>
+       
+      <div class="bottom_wrapper clearfix">
+        <i id="typing"></i>
+        <form id="form">
+          <div class="message_input_wrapper">
+              <input id="message" class="message_input" placeholder="Type your message here..." />
+          </div>
+          <button class="send_message">
+            Send
+          </button>
+        </form>
+      </div>
+    </div>
+      
+          
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript" src="js/members.js"></script>
+  <!-- <script type="text/javascript" src="js/members.js"></script> -->
+  
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="/js/socket.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/rexeze/formatTimeStamp/src/index-cdn.js"></script>
+  <script src="/js/chat.js"></script>
 
 </body>
 

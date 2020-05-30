@@ -5,7 +5,7 @@ const Chats = require('./../models/Chat');
 console.log(Chats);
 const router = express.Router();
 
-router.route('/').get((req, res, next) => {
+router.route('/chat').get((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
   res.statusCode = 200;
 
