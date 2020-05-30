@@ -36,8 +36,8 @@ app.use(bodyParser.json());
 //routes
 require('./routes/html-routes.js')(app);
 require('./routes/api-routes.js')(app);
-app.use('/chats', chatRouter);
-app.use('/login', loginRouter);
+// app.use('/chats', chatRouter);
+// app.use('/login', loginRouter);
 
 //set the express.static middleware
 app.use(express.static(__dirname + '/public'));
@@ -79,9 +79,9 @@ socket.on('connection', socket => {
     //save chat to the database
     db.sequelize.sync().then(() => {
       console.log('connected correctly to the server');
-      const chatMessage = new Chat({ message: msg, userId: 'Anonymous' });
+      // const chatMessage = new Chat({ message: msg, userId: 'Anonymous' });
 
-      chatMessage.save();
+      // chatMessage.save();
     });
   });
 });
