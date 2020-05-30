@@ -2,15 +2,35 @@
 const socket = io();
 const messages = document.getElementById('messages');
 
+// $(document).ready(() => {
+//   // This file just does a GET request to figure out which user is logged in
+//   // and updates the HTML on the page
+//   $.get('/api/user_data').then(data => {
+//     $('.member-name').text(data.email);
+//   });
+// });
+
 (function () {
+  let sender = "";
+  $(document).ready(() => {
+    // This file just does a GET request to figure out which user is logged in
+    // and updates the HTML on the page
+    $.get('/api/user_data').then(data => {
+      $('.member-name').text(data.email);
+      sender = data.email;
+    });
+  });
+
   $('form').submit((e) => {
+    
     const li = document.createElement('li');
     e.preventDefault(); // prevents page reloading
     socket.emit('chat message', $('#message').val());
 
     messages.appendChild(li).append($('#message').val());
     const span = document.createElement('span');
-    messages.appendChild(span).append('by ' + 'Anonymous' + ': ' + 'just now');
+    // messages.appendChild(span).append('by ' + 'Anonymous' + ': ' + 'just now');
+    messages.appendChild(span).append('by: ' + sender);
 
     $('#message').val('');
 
