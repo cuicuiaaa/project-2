@@ -11,7 +11,7 @@ const messages = document.getElementById('messages');
 // });
 
 (function () {
-  let sender = "";
+  let sender = '';
   $(document).ready(() => {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
@@ -25,7 +25,11 @@ const messages = document.getElementById('messages');
     
     const li = document.createElement('li');
     e.preventDefault(); // prevents page reloading
-    socket.emit('chat message', $('#message').val());
+    const data = {
+      message: $('#message').val(),
+      user: sender
+    };
+    socket.emit('chat message', data);
 
     messages.appendChild(li).append($('#message').val());
     const span = document.createElement('span');
@@ -38,11 +42,12 @@ const messages = document.getElementById('messages');
   });
 
   socket.on('received', data => {
+    console.log(data);
     const li = document.createElement('li');
     const span = document.createElement('span');
     const messages = document.getElementById('messages');
     messages.appendChild(li).append(data.message);
-    messages.appendChild(span).append('by ' + 'anonymous' + ': ' + 'just now');
+    messages.appendChild(span).append('by ' + data.user + ': ' + 'just now');
     console.log('Hello bingo!');
   });
 })();
