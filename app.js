@@ -72,9 +72,10 @@ socket.on('connection', socket => {
 
   socket.on('chat message', (msg) => {
     console.log('message: ' + msg);
+    console.log(JSON.stringify(msg, null, 2));
 
     //broadcast message to everyone in port:5000 except yourself.
-    socket.broadcast.emit('received', { message: msg });
+    socket.broadcast.emit('received', msg);
 
     //save chat to the database
     db.sequelize.sync().then(() => {
