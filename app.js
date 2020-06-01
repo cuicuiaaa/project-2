@@ -7,8 +7,8 @@ const passport = require('./config/passport');
 const app = express();
 
 const bodyParser = require('body-parser');
-const chatRouter = require('./route/chatroute');
-const loginRouter = require('./route/loginRoute');
+// const chatRouter = require('./route/chatroute');
+// const loginRouter = require('./route/loginRoute');
 const db = require('./models');
 
 //require the http module
@@ -71,7 +71,9 @@ socket.on('connection', socket => {
   });
 
   socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
+    
+    console.log(msg.message);
+    
     console.log(JSON.stringify(msg, null, 2));
 
     //broadcast message to everyone in port:5000 except yourself.
@@ -81,7 +83,11 @@ socket.on('connection', socket => {
     db.sequelize.sync().then(() => {
       console.log('connected correctly to the server');
       // const chatMessage = new Chat({ message: msg, userId: 'Anonymous' });
-
+      db.Chat.create({
+        message: msg.message,
+        user: msg.user,
+        userId: msg.userId
+      });
       // chatMessage.save();
     });
   });
