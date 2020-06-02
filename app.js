@@ -45,8 +45,6 @@ app.use(express.static(__dirname + '/public'));
 //integrating socketio
 socket = io(http);
 
-//database connection
-const Chat = require('./models/Chat');
 
 
 //setup event listener
@@ -71,9 +69,9 @@ socket.on('connection', socket => {
   });
 
   socket.on('chat message', (msg) => {
-    
+
     console.log(msg.message);
-    
+
     console.log(JSON.stringify(msg, null, 2));
 
     //broadcast message to everyone in port:5000 except yourself.

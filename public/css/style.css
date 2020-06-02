@@ -180,7 +180,7 @@ body {
   cursor: pointer;
   transition: all 0.2s linear;
   text-align: center;
-  float: right;
+  /* float: right; */
 }
 .bottom_wrapper .send_message:hover {
   color: #a3d063;
