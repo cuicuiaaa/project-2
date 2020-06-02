@@ -45,8 +45,6 @@ app.use(express.static(__dirname + '/public'));
 //integrating socketio
 socket = io(http);
 
-
-
 //setup event listener
 socket.on('connection', socket => {
   console.log('user connected');
