@@ -61,4 +61,4 @@ Please read [CONTRIBUTING.md](https://github.com/cuicuiaaa/WhatsChat/blob/master
 
 - Clare: [cuicuiaaa](https://github.com/cuicuiaaa)
 - Prithvi: [prithvipsingh](https://github.com/prithvipsingh)
-- Clare: [yours-kkuznets](https://github.com/yours-kkuznets)
+- Kirill: [yours-kkuznets](https://github.com/yours-kkuznets)
