@@ -7,7 +7,7 @@ const messages = document.getElementById('messages');
 
 
 (function () {
-  let user = {
+  const user = {
     email: '',
     userId: ''
   };
@@ -19,14 +19,14 @@ const messages = document.getElementById('messages');
       $('.member-name').text(data.email);
       user.email = data.email;
       user.userId = data.id;
-      
+
     });
   });
 
   $('form').submit((e) => {
 
-    
-    
+
+
     const li = document.createElement('li');
     e.preventDefault(); // prevents page reloading
     const data = {
