@@ -1,40 +1,46 @@
+
+
 /* eslint-disable array-callback-return */
 const socket = io();
 const messages = document.getElementById('messages');
 
-// $(document).ready(() => {
-//   // This file just does a GET request to figure out which user is logged in
-//   // and updates the HTML on the page
-//   $.get('/api/user_data').then(data => {
-//     $('.member-name').text(data.email);
-//   });
-// });
+
 
 (function () {
-  let sender = '';
+  let user = {
+    email: '',
+    userId: ''
+  };
+
   $(document).ready(() => {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     $.get('/api/user_data').then(data => {
       $('.member-name').text(data.email);
-      sender = data.email;
+      user.email = data.email;
+      user.userId = data.id;
+      
     });
   });
 
   $('form').submit((e) => {
+
+    
     
     const li = document.createElement('li');
     e.preventDefault(); // prevents page reloading
     const data = {
       message: $('#message').val(),
-      user: sender
+      user: user.email,
+      userId: user.userId
     };
+    $.post('/api/message', data);
     socket.emit('chat message', data);
 
     messages.appendChild(li).append($('#message').val());
     const span = document.createElement('span');
     // messages.appendChild(span).append('by ' + 'Anonymous' + ': ' + 'just now');
-    messages.appendChild(span).append('by: ' + sender);
+    messages.appendChild(span).append('by: ' + user.email);
 
     $('#message').val('');
 
@@ -65,7 +71,7 @@ const messages = document.getElementById('messages');
         messages.appendChild(li).append(data.message);
         messages
           .appendChild(span)
-          .append('by ' + data.sender + ': ' + formatTimeAgo(data.createdAt));
+          .append('by ' + data.user + ': ' + formatTimeAgo(data.createdAt));
       });
     });
 })();

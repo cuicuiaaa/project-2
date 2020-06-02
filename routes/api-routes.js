@@ -30,6 +30,8 @@ module.exports = function (app) {
       });
   });
 
+  
+
   // Route for logging user out
   app.get('/logout', (req, res) => {
     req.logout();
@@ -50,4 +52,16 @@ module.exports = function (app) {
       });
     }
   });
+
+  app.get('/chats', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.statusCode = 200;
+
+    db.Chat.findAll({}).then((data) => {
+      res.json(data);
+    });
+
+  });
+
+
 };
