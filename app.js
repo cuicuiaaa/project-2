@@ -28,7 +28,7 @@ app.use(passport.session());
 // require the socket.io module
 const io = require('socket.io');
 
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 //bodyparser middleware
 app.use(bodyParser.json());
