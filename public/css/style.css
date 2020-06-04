@@ -180,7 +180,7 @@ body {
   cursor: pointer;
   transition: all 0.2s linear;
   text-align: center;
-  /* float: right; */
+  float: right;
 }
 .bottom_wrapper .send_message:hover {
   color: #a3d063;
@@ -200,7 +200,6 @@ body {
 .messages > li {
   font-size: 15px;
   color: rgb(13, 223, 153);
-  background: #f7a30675;
   border-radius: 5px;
   width: fit-content;
 }
